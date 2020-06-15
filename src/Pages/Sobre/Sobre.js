@@ -1,18 +1,19 @@
 import React, {Component, Fragment} from "react";
 import 'materialize-css/dist/css/materialize.css';
-import Header from "./Header";
+import Header from "../../Components/Header/Header";
 
-class NotFound extends Component{
+class Sobre extends Component{
     render() {
         return (
             <Fragment>
                 <Header></Header>
                 <div className="container">
-                    <h1>Erro 404</h1>
+                    <h1>Cursos Frederyk Antunnes</h1>
+                    <h4>Site de Estudos da tecnologia React</h4>
+                    <br/>
                 </div>
             </Fragment>
         );
     }
 }
-
-export default NotFound;
+export default Sobre;

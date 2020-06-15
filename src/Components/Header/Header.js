@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import LinkWrapper from './LinkWrapper';
-import {NavLink} from "react-router-dom";
+import LinkWrapper from '../../Utils/LinkWrapper';
 
 
 class Header extends Component{
