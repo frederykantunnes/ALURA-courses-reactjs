@@ -1,4 +1,17 @@
 import React, {Component} from "react";
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
+    },
+}));
 
 
 
@@ -26,25 +39,26 @@ class Formulario extends Component{
         this.setState(this.stateInicial);
     }
 
+
     render() {
         const {nome, livro, preco} = this.state;
         return (
-            <form>
-                <div className="row">
-                    <div className="col s4">
-                        <label htmlFor="nome">Nome</label>
-                        <input className="validate" type="text" id="nome" onChange={this.escutadorDeInput} name = "nome" value={nome}/>
-                    </div>
-                    <div className="col s4">
-                        <label htmlFor="livro"> Livro</label>
-                        <input className="validate" type="text" id="livro" onChange={this.escutadorDeInput} name = "livro" value={livro}/>
-                    </div>
-                    <div className="col s4">
-                        <label htmlFor="nome"> Preço</label>
-                        <input className="validate" type="text" id="preco" onChange={this.escutadorDeInput} name = "preco" value={preco}/>
-                    </div>
-                </div>
-                <button type="button" className="waves-effect waves-light btn" onClick={this.submitFormulario}>Salvar</button>
+            <form className={useStyles.root}>
+                <Grid container spacing={2} alignItems={'center'}>
+                    <Grid item>
+                        <TextField  label="Autor" variant="outlined" type="text" id="nome" onChange={this.escutadorDeInput} name="nome" value={nome}/>
+                    </Grid>
+                    <Grid item>
+                        <TextField  label="Livro" variant="outlined" type="text" id="livro" onChange={this.escutadorDeInput} name="livro" value={livro}/>
+                    </Grid>
+                    <Grid item>
+                        <TextField  label="Preço" variant="outlined" type="text" id="preco" onChange={this.escutadorDeInput} name="preco" value={preco}/>
+                    </Grid>
+                    <Grid item>
+                        <Button variant={"contained"} color={"primary"} onClick={this.submitFormulario}>Salvar</Button>
+                    </Grid>
+                </Grid>
+
             </form>
         );
     }

@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import 'materialize-css/dist/css/materialize.css';
 import Tabela from "../../Components/Table/Tabela";
 import Formulario from "../../Components/Formulario/Formulario";
 import Header from "../../Components/Header/Header";
@@ -12,8 +11,10 @@ class Home extends Component{
         super(props);
         this.state = {
             autores: [],
+            columnTable:[{title:'Autor', data:'nome'},{title:'Livro', data:'livro'},{title:'Preço', data:'preco'}]
         };
     }
+
 
     removeAutor = id =>{
 
@@ -76,8 +77,8 @@ class Home extends Component{
                 <Header/>
                 <div className="container">
                     <h1>Cursos</h1>
-                    <Tabela autores = {this.state.autores} removeautor={this.removeAutor}/>
                     <Formulario adicionar={this.adicionar} />
+                    <Tabela dados={this.state.autores} removerFunc={this.removeAutor} colunas={this.state.columnTable}/>
                 </div>
             </Fragment>
         );

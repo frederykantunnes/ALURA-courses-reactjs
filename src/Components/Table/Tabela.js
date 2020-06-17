@@ -1,49 +1,63 @@
-import React, {Component} from "react";
+import React from "react";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Button from "@material-ui/core/Button";
 
-
-const TableHead = () => {
+const CellDelete = ({removerFunc, id})=>{
+    if (!removerFunc){
+        return null;
+    }
+    if(!id){
+        return <TableCell>Excluir Registro</TableCell>
+    }
     return(
-        <thead>
-        <tr>
-            <th>Autores</th>
-            <th>Livros</th>
-            <th>Preços</th>
-            <th>Remover</th>
-        </tr>
-        </thead>
+        <TableCell>
+            <Button
+                onClick={ ()=>{removerFunc(id) }}
+                color="primary"
+                variant="contained">Remover</Button>
+        </TableCell>
     );
-}
+};
 
-const TableBody = props =>{
-    const linhas = props.autores.map((linha) => {
-        return(
-            <tr key={linha.id}>
-                <td>{linha.nome}</td>
-                <td>{linha.livro}</td>
-                <td>{linha.preco}</td>
-                <td><button className="waves-effect waves-light btn" onClick={ ()=>{props.removeautor(linha.id) }} >Remover</button></td>
-            </tr>
-        );
-    });
-
-    return(
-        <tbody>
-            {linhas}
-        </tbody>
-    );
-}
-
-class Tabela extends Component{
-    render(){
-        const { autores, removeautor } = this.props;
+const Tabela = props =>{
+        const { dados, removerFunc , colunas } = props;
 
         return (
-            <table className="centered highlight">
-                <TableHead/>
-                <TableBody autores={autores} removeautor={removeautor}/>
-            </table>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        {
+                            colunas.map(coluna=>{
+                                return(
+                                    <TableCell>{coluna.title}</TableCell>
+                                );
+                            })
+                        }
+                        <CellDelete removerFunc={removerFunc} />
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                        {
+                                dados.map(dado=>{
+                                    return (
+                                        <TableRow>
+                                            {
+                                                colunas.map(coluna=>{
+                                                    return  <TableCell>{dado[coluna.data]}</TableCell>
+                                                })
+                                            }
+                                            <CellDelete removerFunc={removerFunc} id={dado.id} />
+                                        </TableRow>
+                                    );
+                                })
+                        }
+                </TableBody>
+            </Table>
         );
-    }
 }
 
 export default Tabela;

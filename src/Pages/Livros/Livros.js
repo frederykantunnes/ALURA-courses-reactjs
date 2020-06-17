@@ -3,38 +3,7 @@ import 'materialize-css/dist/css/materialize.css';
 import Header from "../../Components/Header/Header";
 import APIService from "../../Utils/APIService";
 import PopUp from "../../Utils/PopUp";
-
-const TableHead =  () => {
-    return (
-        <thead>
-        <tr>
-            <th>Livro</th>
-        </tr>
-        </thead>
-    );
-}
-
-
-const TableFull =  props => {
-
-    const linhas = props.livros.map((linha) => {
-        return(
-            <tr key={linha.id}>
-                <td>{linha.livro}</td>
-            </tr>
-        );
-    });
-
-    return (
-        <table>
-            <TableHead/>
-            <tbody>
-            {linhas}
-            </tbody>
-        </table>
-    );
-}
-
+import Tabela from "../../Components/Table/Tabela";
 
 class Livros extends Component{
 
@@ -43,6 +12,7 @@ class Livros extends Component{
         super(props);
         this.state = {
             autores: [],
+            colunas:[{title:"Livro", data:"livro"}],
         };
     }
 
@@ -71,7 +41,7 @@ class Livros extends Component{
                 <Header></Header>
                 <div className="container">
                     <h1>Lista de Livros</h1>
-                    <TableFull livros={this.state.autores} />
+                    <Tabela dados={this.state.autores} colunas={this.state.colunas}/>
                 </div>
             </Fragment>
         );

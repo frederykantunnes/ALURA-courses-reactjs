@@ -1,19 +1,26 @@
 import React, {Component, Fragment} from "react";
-import 'materialize-css/dist/css/materialize.css';
 import Header from "../../Components/Header/Header";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
-class Sobre extends Component{
-    render() {
+
+const useEstilos = makeStyles({
+    titulo:{
+        textAlign:'center',
+        color:'blue'
+    }
+});
+const Sobre = () => {
+    const classes = useEstilos();
         return (
             <Fragment>
                 <Header></Header>
-                <div className="container">
-                    <h1>Cursos Frederyk Antunnes</h1>
-                    <h4>Site de Estudos da tecnologia React</h4>
-                    <br/>
-                </div>
+                <Container maxWidth={"sm"}>
+                    <Typography variant={"h1"} component={"h2"} className={classes.titulo}>Sobre</Typography>
+                    <Typography variant={"body1"} component={"p"}>Dados sobre a casa do código</Typography>
+                </Container>
             </Fragment>
         );
-    }
-}
+};
 export default Sobre;
